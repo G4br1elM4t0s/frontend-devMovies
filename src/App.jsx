@@ -1,9 +1,7 @@
+import { Rotas } from "./router";
+
 function App() {
-  return (
-    <>
-      <h1>Hello world</h1>
-    </>
-  );
+  return <Rotas />;
 }
 
 export default App;
