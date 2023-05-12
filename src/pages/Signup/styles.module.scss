@@ -1,0 +1,51 @@
+.mainContent {
+  width: 100%;
+  height: calc(100vh - 10rem);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.formSignup {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  div:not(:first-child) {
+    margin-top: 10px;
+  }
+
+  button {
+    margin-top: 40px;
+  }
+
+}
+
+.leftLogin {
+  position: relative;
+  top: 150px;
+  right: 100px;
+}
+
+.rightLogin {
+  position: relative;
+  bottom: 70px;
+  left: 100px;
+}
+
+.rodape {
+  height: 5rem;
+  display: flex;
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  align-items: center;
+
+  .btnAjuda {
+    margin-left: auto;
+    height: 3rem;
+  }
+}
