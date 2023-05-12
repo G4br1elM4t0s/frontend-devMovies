@@ -1,7 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import Home from "./pages/Home";
+import Movies from "./pages/Movies";
 import Signup from "./pages/Signup";
+import Signin from "./pages/Signin";
+import Home from "./pages/Home";
 
 export function Rotas() {
   return (
@@ -9,9 +11,8 @@ export function Rotas() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/signin" element={<Home />} />
-        <Route path="/dashboard" element={<Home />} />
-        <Route path="/adm" element={<Home />} />
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/movies" element={<Movies />} />
         <Route path="/history" element={<Home />} />
       </Routes>
     </Router>
