@@ -6,7 +6,7 @@ import styles from "./styles.module.scss";
 export function BtnAuthSubmit(props) {
   return (
     <>
-      <button className={styles.btnSubmit}>{props.name}</button>
+      <button type="submit" className={styles.btnSubmit}>{props.name}</button>
     </>
   );
 }

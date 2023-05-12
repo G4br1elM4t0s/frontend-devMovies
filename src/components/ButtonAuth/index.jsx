@@ -1,9 +1,23 @@
 import styles from "./styles.module.scss";
 
+import { useLocation } from "react-router-dom";
+
 export function ButtonAuth() {
+  const location = useLocation();
+
+  let buttonText = "Signup";
+  let buttonLink = "/signup";
+  if (location.pathname === "/signin") {
+    buttonText = "Signin";
+    buttonLink = "/signup";
+  } else {
+    buttonText = "Signup";
+    buttonLink = "/signin";
+  }
+
   return (
-    <>
-      <button className={styles.buttonAuth}>Signup</button>
-    </>
+    <a href={buttonLink}>
+      <button className={styles.buttonAuth}>{buttonText}</button>
+    </a>
   );
 }
