@@ -65,6 +65,21 @@
 
 .selectedItems {
   display: flex;
+  gap: 15px;
+}
+
+.filterBox {
+  background: var(--white);
+  padding: 8px;
+  border-radius: 10px;
+  gap: 8px;
+  display: flex;
+}
+
+.removeButton {
+  color: black;
+  font-weight: 700;
+  border: 0;
 }
 
 .selected {

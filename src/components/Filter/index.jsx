@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./styles.module.scss";
 import menu from "../../assets/hamburgue.svg";
+import del from "../../assets/del.svg";
 
 export function Filter() {
   const [open, setOpen] = useState(false);
@@ -30,13 +31,15 @@ export function Filter() {
         <div className={styles.selectedItems}>
           {selectedItems.map((item) => (
             <div key={item} className={styles.selectedItem}>
-              <span className={styles.itemName}>{item}</span>
-              <button
-                className={styles.removeButton}
-                onClick={() => handleRemoveItemClick(item)}
-              >
-                X
-              </button>
+              <div className={styles.filterBox}>
+                <span className={styles.itemName}>{item}</span>
+                <button
+                  className={styles.removeButton}
+                  onClick={() => handleRemoveItemClick(item)}
+                >
+                  <img src={del} alt="del" />
+                </button>
+              </div>
             </div>
           ))}
         </div>
