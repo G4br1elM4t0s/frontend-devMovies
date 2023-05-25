@@ -5,6 +5,15 @@
   justify-content: end;
 }
 
+.mainContent {
+  width: 100%;
+  height: calc(100vh - 10rem);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .contentBar {
   width: 1220px;
   margin: 0 auto;
