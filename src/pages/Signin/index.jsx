@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 import api from "../../services/axios";
 import { Footer } from "../../components/Footer";
+import { useEffect } from "react";
 
 export default function Signin() {
   const navigate = useNavigate();
@@ -25,11 +26,11 @@ export default function Signin() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    const resolve = await api.post("/signup", data);
-    console.log(resolve);
+    const resolve = await api.post("/auth", data);
+    console.log(resolve + " " + resolve.status);
 
-    if (resolve.status === 201) {
-      navigate("/signin");
+    if (resolve.status === 200) {
+      navigate("/movies");
     }
   };
 
