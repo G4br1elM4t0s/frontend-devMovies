@@ -1,11 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./styles.module.scss";
-import menu from "../../assets/hamburgue.svg";
+import menuAberto from "../../assets/hamburgue.svg";
+import menuFechado from "../../assets/menuFechado.svg";
 import del from "../../assets/del.svg";
 
 export function Filter() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const [selectedItems, setSelectedItems] = useState([]);
+
+  useEffect(() => {
+    const filter = localStorage.getItem("filter");
+    if (filter) {
+      setSelectedItems(JSON.parse(filter));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("filter", JSON.stringify(selectedItems));
+  }, [selectedItems]);
 
   function handleMenuClick() {
     setOpen(!open);
@@ -22,8 +34,6 @@ export function Filter() {
   function handleRemoveItemClick(item) {
     setSelectedItems(selectedItems.filter((i) => i !== item));
   }
-
-  console.log(selectedItems);
 
   return (
     <>
@@ -46,7 +56,7 @@ export function Filter() {
         <div className={styles.container}>
           <div className={styles.menu}>
             <button onClick={handleMenuClick}>
-              <img src={menu} alt="Menu" />
+              <img src={open ? menuFechado : menuAberto} alt="Menu" />
             </button>
           </div>
           <nav className={open ? styles.inactive : styles.active}>

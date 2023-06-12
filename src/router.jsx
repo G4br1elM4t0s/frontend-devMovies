@@ -4,6 +4,7 @@ import Movies from "./pages/Movies";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import Home from "./pages/Home";
+import Historic from "./pages/Historic";
 
 export function Rotas() {
   return (
@@ -13,7 +14,7 @@ export function Rotas() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/movies" element={<Movies />} />
-        <Route path="/history" element={<Home />} />
+        <Route path="/historic" element={<Historic />} />
       </Routes>
     </Router>
   );

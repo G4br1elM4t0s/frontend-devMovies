@@ -11,7 +11,6 @@ export function Card({ onclick, filmeImage, title }) {
   const encodedFileName = encodeURIComponent(fileName);
 
   const image = baseUrl + encodedFileName;
-  console.log(image);
   return (
     <>
       <div

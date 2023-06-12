@@ -26,7 +26,6 @@ export default function Signup() {
 
   const onSubmit = async (data) => {
     const resolve = await api.post("/signup", data);
-    console.log(resolve);
 
     if (resolve.status === 201) {
       navigate("/signin");

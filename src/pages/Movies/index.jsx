@@ -7,6 +7,7 @@ import { BackgroundLogged } from "../../components/BackgroundLogged";
 import { Card } from "../../components/Card";
 import { Modal } from "../../components/Modal";
 import api from "../../services/axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Movies() {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
@@ -14,6 +15,17 @@ export default function Movies() {
 
   const [movies, setMovies] = useState([]);
   const [selectedMovieId, setSelectedMovieId] = useState("");
+
+  const [selectedMovieName, setSelectedMovieName] = useState("");
+
+  const user = localStorage.getItem("userId");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user || user === "") {
+      navigate("/");
+    }
+  }, [user, navigate]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
@@ -26,18 +38,56 @@ export default function Movies() {
     loadMovies();
   }, []);
 
-  const handleDivClick = (id) => {
+  const handleDivClick = (id, name) => {
     setIsModalOpen(true);
     setSelectedMovieId(id);
+    setSelectedMovieName(name);
   };
 
   const handleModalClick = (event) => {
-    console.log("hey");
     event.stopPropagation();
   };
 
   const handleOutsideClick = () => {
     setIsModalOpen(false);
+  };
+
+  const handleLike = async () => {
+    const userId = localStorage.getItem("userId");
+    const type = "gostei";
+    await api.post(`/movie/${selectedMovieName}/ratings`, {
+      type,
+      userId,
+    });
+  };
+
+  const handleDislike = async () => {
+    const userId = localStorage.getItem("userId");
+    console.log(userId);
+    const type = "nao-gostei";
+    await api.post(`/movie/${selectedMovieName}/ratings`, {
+      type,
+      userId,
+    });
+  };
+
+  const handleWatched = async () => {
+    const userId = localStorage.getItem("userId");
+    const type = "assistido";
+    await api.post(`/movie/${selectedMovieName}/ratings`, {
+      type,
+      userId,
+    });
+  };
+
+  const handleToWatch = async () => {
+    const userId = localStorage.getItem("userId");
+    const type = "assistir";
+    console.log(selectedMovieName);
+    await api.post(`/movie/${selectedMovieName}/ratings`, {
+      type,
+      userId,
+    });
   };
 
   return (
@@ -51,7 +101,7 @@ export default function Movies() {
       {isSearchFocused ? (
         <Mensagem
           isSearchFocused={isSearchFocused}
-          msg="p esquise o nome de um filme ou série."
+          msg="pesquise o nome de um filme ou série."
         />
       ) : (
         <main className={styles.mainContent}>
@@ -60,7 +110,7 @@ export default function Movies() {
             {movies.map((movie) => (
               <Card
                 key={movie.id}
-                onclick={() => handleDivClick(movie.id)}
+                onclick={() => handleDivClick(movie.id, movie.name)}
                 filmeImage={movie.thumbnail}
                 title={movie.name}
               />
@@ -70,6 +120,10 @@ export default function Movies() {
                 fechar={isModalOpen ? handleOutsideClick : () => {}}
                 manter={handleModalClick}
                 selectedMovieId={selectedMovieId}
+                handleLike={handleLike}
+                handleDislike={handleDislike}
+                handleWatched={handleWatched}
+                handleToWatch={handleToWatch}
               />
             )}
           </div>
